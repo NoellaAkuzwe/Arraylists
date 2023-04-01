@@ -1,0 +1,139 @@
+/*****************************************************************************
+* HOMEWORK 1: CharArrayList
+* Comp 15 Spring 2023 
+* README
+* Author: Noella Akuzwe nakuzw01
+*****************************************************************************/
+
+Program Purpose:
+---------------
+
+    This program implements an array list data structure that contains
+    characters.
+
+Compile/run:
+-----------
+
+    Type "unit_test" in the command line to compile and run.
+
+
+Acknowledgments:
+---------------
+
+    - Office Hours: TAs
+    - Lab 1
+    - Website for attempting JFFEs: https://www.geeksforgeeks.org/merge-sort/
+
+Files:
+-----
+
+CharArrayList.h: Interface for a CharArrayList Class.
+
+CharArrayList.cpp: Implementation of the CharArrayList Class.
+    The default constructor for this class initializes an ArrayList
+    to a size of 0, and a capacity of 0. 
+
+unit_tests.h: "A unit testing file for the CharArrayList Class. 
+    Runs in conjunction with the unit_test framework to allow
+    for testing of individual functions."(Lab 1)
+
+timer_main.cpp: provides the time that each operation takes to 
+    run in nanoseconds.
+
+Makefile: "File to build the program"(Lab 1).
+
+
+Data Structures:
+---------------
+
+    "This main data structure of this lab is a dymacially expanding
+    array also called an ArrayList. If the number of items is ever
+    equal to the capacity, the array will automatically expand using
+    the expand function, allowing for an arbitrary number of elements 
+    to be inserted into the ArrayList".
+
+
+Testing:
+-------
+By creating an instance of the CharArrayList class, I was able to
+assert that the default constructors and other constructors were
+working well. I, ofcourse, needed to use other functions such as 
+size() to assert that the array list created had the required size.
+
+I also first worked on toString function because I needed it to print
+messages to terminal to see whether my parameterized constructors were
+performing their jobs right. I tested toString by printing its message
+to terminal using a cout.
+
+The size function test was also very important because it helped me
+make sure that my size function was doing the right thing, which I then
+used in testing almost all the functions by using assert to make sure
+that the size of the array list used in testing had the right size.
+
+I then worked on elementAt function, which I tested by asserting that
+the right character was at the specified index. The elementAt function
+was also very helpful in testing my insertAt, replaceAt, and first and
+last functions among others. I also tried to consider edge cases and
+wrote some tests for them. The function that tooke longer than others
+to test was concatenate. For some reason, when it passed concatenating
+with empty and other different arraylist, it couldn't pass concatenating
+to itself. To solve this, I changed from just pushing back an element
+at a given idex, to first putting the original elements of the arraylist
+in a string. I then cleared the original arraylist and pushed back each
+character of the string.
+
+It was after testing the functions that I started working on error
+handling. error handling was pretty fast because the provided samples
+in the file helped make it easier. As you will see in my unit_tests.h
+file, the errors were handled by usingg the try...catch...method. I
+wrote separate test functions for each of the functions in the class.
+For example, for replaceAt_incorrect, I created an array list for
+testing and tried calling replaceAt with an out of range index, and 
+used assert to make sure that the right range error message got thrown.
+I used the same approach with other functions that required accounting
+for range errors and runtime errors.
+
+
+Hours spent on HW 1:
+-------------------
+13.5 hours
+
+Time measurements taken:
+-----------------------
+1. Categories from fastest to slowest:
+Access operation: 
+    call first():------------------------549 nanoseconds
+    call last():-------------------------637 nanoseconds
+    call elementAt() for middle of list: 643 nanoseconds
+
+Insertion operation:
+    pushAtBack:--------------------------960 nanoseconds
+    insertAt middle of list:-------------1428129 nanoseconds
+    pushAtFront:-------------------------2857371 nanoseconds
+
+Removal operation:
+    removeAt middle of list:-------------2998649 nanoseconds
+    popFromBack:-------------------------3038439 nanoseconds
+    popFromFront:------------------------3338838 nanoseconds
+
+2. Looking at the operations under the same category, the operations
+   under access category took approximately the same amount of time.
+   They were all relatively fast compared to operations in the other
+   categories. The reason why their time is approximately the same is
+   due to the fact that all the three of them involve accessing an
+   element at a specific index in the array.
+   If the three categories(access, insertion, and removal) are 
+   compared, the two categories with approximately the same amount
+   of time would be the insertion operation and the removal operation.
+   Compared to the access operation category, the insertion and
+   removal operation are much slower. insertion and deletion are
+   similar because they all involve moving through the positions in the
+   array list. For example, in order to insert at a specific position
+   (which is not the back), some or all the elements of the array list 
+   will need to be shifted. The same thing will happen if an element is
+   removed from a certain position in the array, which is why insertion
+   and removal operations are kind of similar. 
+   Conclusion: access operations are faster as they involve just
+   accessing a specific index while insertion and removal operations 
+   are slower because they involve moving the elements of the array
+   list to different positions, which takes time.
